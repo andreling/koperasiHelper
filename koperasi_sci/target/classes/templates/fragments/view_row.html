@@ -1,0 +1,20 @@
+<tr th:fragment="viewRow">
+    <td class="p-2 border" th:text="${item.id}"></td>
+    <td class="p-2 border" th:text="${item.tahun}"></td>
+    <td class="p-2 border" th:text="${item.periode}"></td>
+    <td class="p-2 border" th:text="${item.jumlahPinjaman}"></td>
+    <td class="p-2 border" th:text="${item.jumlahCicilan}"></td>
+    <td class="p-2 border">
+        <button class="bg-blue-500 text-white px-2 py-1 rounded text-xs"
+                th:attr="hx-get=@{/loan/get/current/row(id=${item.id})}"
+                hx-target="closest tr" hx-swap="outerHTML">
+            Edit
+        </button>
+
+        <button class="bg-red-500 text-white px-2 py-1 rounded text-xs"
+                th:attr="hx-delete=@{/loan/delete(id=${item.id})}"
+                hx-target="closest tr" hx-swap="outerHTML">
+            Delete
+        </button>
+    </td>
+</tr>

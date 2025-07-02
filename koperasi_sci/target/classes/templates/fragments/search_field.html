@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="searchForm">
+    <form hx-get="/loan/view" hx-target="#loan-table-wrapper" hx-swap="innerHTML"
+          class="mb-4 flex flex-row gap-2">
+        <input name="nik" type="text" placeholder="Masukkan NIK"
+               class="flex-grow border rounded px-3 py-2 text-sm"
+               th:value="${nik}" />
+        <button class="bg-blue-600 text-white px-4 py-2 rounded text-sm">Cari</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<div th:fragment="loanViewWrapper(angsuran, nik, loanId)">
+    <button
+            class="bg-red-500 text-white px-2 py-1 rounded text-xs"
+            hx-post="/loan/add"
+            hx-target="#loan-detail-section"
+            hx-include="#nik-holder, #loan-id"
+            hx-trigger="click">
+        Add Row
+    </button>
+
+    <div id="loan-detail-section">
+        <table class="table-auto w-full border border-collapse mt-4">
+            <thead>
+            <tr class="bg-gray-200">
+                <th class="p-2 border">ID</th>
+                <th class="p-2 border">Tahun</th>
+                <th class="p-2 border">Periode</th>
+                <th class="p-2 border">Jumlah Pinjaman</th>
+                <th class="p-2 border">Jumlah Cicilan</th>
+                <th class="p-2 border">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iStat : ${angsuran}" th:attr="id=|row-${iStat.index}|">
+                <td class="p-2 border" th:text="${item.id}"></td>
+                <td class="p-2 border" th:text="${item.tahun}"></td>
+                <td class="p-2 border" th:text="${item.periode}"></td>
+                <td class="p-2 border" th:text="${item.jumlahPinjaman}"></td>
+                <td class="p-2 border" th:text="${item.jumlahCicilan}"></td>
+                <td class="p-2 border">
+                    <button
+                            class="bg-blue-500 text-white px-2 py-1 rounded text-xs"
+                            th:attr="hx-get=@{/loan/get/current/row(id=${item.id})}, hx-target='#row-' + ${iStat.index}"
+                            hx-swap="outerHTML" hx-trigger="click">
+                        Edit
+                    </button>
+                    <button
+                            class="bg-red-500 text-white px-2 py-1 rounded text-xs"
+                            th:attr="hx-delete=@{/loan/delete(id=${item.id})}, hx-target='#row-' + ${iStat.index}"
+                            hx-swap="outerHTML" hx-trigger="click">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="state-holder">
+        <input name="nik" id="nik-holder" th:value="${nik}" />
+        <input name="loanId" id="loan-id" th:value="${loanId}" />
+    </div>
+</div>

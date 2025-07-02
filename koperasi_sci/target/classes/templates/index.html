@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:hx-on="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Loan Checker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body class="min-h-screen bg-gray-100 text-gray-900 p-4 sm:p-6">
+
+<div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-4 sm:p-6">
+    <h1 class="text-xl sm:text-2xl font-bold mb-4 text-center">Cek Pinjaman Karyawan</h1>
+
+    <!-- Search Form -->
+    <form hx-get="/loan/check" hx-target="#result" hx-swap="innerHTML"
+          class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+        <input name="nik" type="text"
+               placeholder="Masukkan NIK"
+               class="flex-grow border rounded px-3 py-2 text-sm sm:text-base" />
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm sm:text-base">
+            Cari
+        </button>
+    </form>
+
+    <!-- Result section -->
+    <div id="result" class="mt-6 overflow-x-auto"></div>
+
+    <h1 class="text-xl sm:text-2xl font-bold mb-4 text-center">Cek Angsuran Pinjaman</h1>
+    <!-- Search Form -->
+    <form
+        hx-get="/loan/view"
+        hx-include="#nik-input"
+        hx-target="#loan-wrapper"
+        hx-swap="innerHTML"
+        id="angsuran-form"
+        class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+        <input  class="flex-grow border rounded px-3 py-2 text-sm sm:text-base"
+                id="nik-input"
+                name="nik"
+                type="text"
+                placeholder="Masukkan NIK"/>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm sm:text-base">
+            Cari
+        </button>
+    </form>
+
+    <div id="loan-wrapper"></div>
+</div>
+</body>
+</html>

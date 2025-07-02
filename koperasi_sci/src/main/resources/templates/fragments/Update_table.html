@@ -1,0 +1,38 @@
+<tr th:fragment="editRow">
+    <td class="p-2 border">
+        <input id="id" type="text" name="id" class="border rounded px-2 py-1 w-full"
+               th:value="${item.id}"/>
+    </td>
+    <td class="p-2 border">
+        <input id="tahun" type="text" name="tahun" class="border rounded px-2 py-1 w-full"
+               th:value="${item.tahun}" />
+    </td>
+    <td class="p-2 border">
+        <input id="periode" type="text" name="periode" class="border rounded px-2 py-1 w-full"
+               th:value="${item.periode}" />
+    </td>
+    <td class="p-2 border">
+        <input id="jumlahPinjaman" type="text" name="jumlahPinjaman" class="border rounded px-2 py-1 w-full"
+               th:value="${item.jumlahPinjaman}" />
+    </td>
+    <td class="p-2 border">
+        <input id="jumlahCicilan" type="number" name="jumlahCicilan" class="border rounded px-2 py-1 w-full"
+               th:value="${item.jumlahCicilan}" />
+    </td>
+
+    <td class="p-2 border">
+        <button class="bg-green-500 text-white px-2 py-1 rounded text-xs"
+                hx-put="/loan/update"
+                hx-target="closest tr"
+                hx-include="closest tr"
+                hx-swap="outerHTML">
+            Save
+        </button>
+        <button class="bg-gray-500 text-white px-2 py-1 rounded text-xs"
+                th:attr="hx-get=@{/loan/view-row(id=${item.id})}"
+                hx-target="closest tr"
+                hx-swap="outerHTML">
+            Cancel
+        </button>
+    </td>
+</tr>

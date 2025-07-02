@@ -1,0 +1,48 @@
+<!-- loan-table.html -->
+<div th:fragment="loanTableFragment(loans)">
+    <div class="overflow-x-auto mt-4">
+        <table class="table-auto w-full border border-collapse min-w-[600px] sm:min-w-full">
+            <thead>
+            <tr class="bg-gray-200">
+                <th class="p-2 border">NIK</th>
+                <th class="p-2 border">Status</th>
+                <th class="p-2 border">Jumlah</th>
+                <th class="p-2 border">Tenor</th>
+                <th class="p-2 border">Cicilan/bulan</th>
+                <th class="p-2 border">Mic</th>
+                <th class="p-2 border">Mic Approval</th>
+                <th class="p-2 border">Hrd</th>
+                <th class="p-2 border">Hrd Approval</th>
+                <th class="p-2 border">HeadUnit</th>
+                <th class="p-2 border">Headunit Approval</th>
+                <th class="p-2 border">Kesimpulan</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="loan : ${loans}">
+                <td class="p-2 border" th:text="${loan.borrower}"></td>
+                <td class="p-2 border" th:text="${loan.loanStatus}"></td>
+                <td class="p-2 border" th:text="${loan.totalLoan}"></td>
+                <td class="p-2 border" th:text="${loan.tenor}"></td>
+                <td class="p-2 border" th:text="${loan.paymentPerMonth}"></td>
+                <td class="p-2 border" th:text="${loan.micNIK} + '-' + ${loan.micName}"></td>
+                <td class="p-2 border" th:text="${loan.micApproval}"></td>
+                <td class="p-2 border" th:text="${loan.hrdNIK} + '-' + ${loan.hrdName}"></td>
+                <td class="p-2 border" th:text="${loan.hrdApproval}"></td>
+                <td class="p-2 border" th:text="${loan.headUnitNIK} + '-' + ${loan.headUnitName}"></td>
+                <td class="p-2 border" th:text="${loan.headUnitApproval}"></td>
+                <td class="p-2 border text-sm">
+                    <div class="flex flex-col gap-1">
+                        <div class="flex gap-1">
+                            <button class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-xs"
+                                    th:attr="onclick=|copyToClipboard('kesimpulan__${loan.borrower}')|">
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
